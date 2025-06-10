@@ -283,6 +283,7 @@ header, footer {
 }
 
 header img {
+    background-color: var(--background-button);
     height: 256px;
     width: 256px;
     border-radius: 50%;
@@ -476,6 +477,7 @@ section a {
 }
 
 #topbar img{
+    background-color: var(--background-button);
     height: 56px;
     border-radius: 50%;
     border: var(--border-tiny);
@@ -612,6 +614,7 @@ section a {
 }
 
 .loader img {
+    background-color: var(--background-button);
     height: 256px;
     width: 256px;
     border-radius: 50%;
