@@ -29,7 +29,7 @@ SpotiTools to aplikacja webowa, której celem jest rozszerzenie możliwości zar
 
 ### Jak uruchomić
 
-- Sklonuj repozytorium:
+- Sklonuj repozytorium: https://github.com/Bumburysy/Spotify_Web_App/
 - Otwórz plik index.html w przeglądarce.
 
 ### Plany rozwoju
