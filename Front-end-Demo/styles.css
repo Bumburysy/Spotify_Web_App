@@ -34,8 +34,8 @@
     --background-button-hover: #1b9aaa;
 
     --color-base: #1a2327;
-    --color-primary: #1b9aaa;
-    --color-secondary: #2ec4b6;
+    --color-primary: #1a2327;
+    --color-secondary: #1a2327;
     --color-accent: none;
     --color-accent-alt: none;
 
@@ -131,6 +131,7 @@ p {
 a {
     font-size: var(--font-size-base);
     background-color: var(--background-button);
+    color: var(--color-secondary);
 }
 
 button {
@@ -324,6 +325,7 @@ a[role="button"]:hover{
     transform: scale(1.05);
     box-shadow: var(--shadow-medium-inset);
     background-color: var(--background-button-hover);
+    color: var(--color-primary);
 }
 
 footer {
@@ -544,6 +546,7 @@ section a {
 #sidebar nav a.active {
     border: var(--border-small);
     background-color: var(--background-button-hover);
+    color: var(--color-primary);
 }
 
 #sidebar.active {
