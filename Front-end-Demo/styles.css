@@ -24,18 +24,18 @@
 }
 
 :root[data-theme="light"] {
-    --background-base: #f0f8f6;
-    --background-main: linear-gradient(to right, #b0dff2 0%, #b0ffd6 50%, #b0dff2 100%);
-    --background-hf: radial-gradient(circle at center, #a7ffe0 0%, #c3def2 90%);
-    --background-sectiona: linear-gradient(135deg, #e4fcf4 0%, #a8c4d6 100%);
-    --background-sectionb: linear-gradient(-135deg, #e4fcf4 0%, #a8c4d6 100%);
+    --background-base: #d6f6ff;
+    --background-main: linear-gradient(120deg, #b0e6d2 0%, #a0d8ef 50%, #e6f6ff 100%);
+    --background-hf: radial-gradient(circle at 60% 40%, #b0e6d2 0%, #a0d8ef 100%);
+    --background-sectiona: linear-gradient(135deg, #e6f6ff 0%, #b0e6d2 100%);
+    --background-sectionb: linear-gradient(-135deg, #e6f6ff 0%, #a0d8ef 100%);
 
-    --background-button: #a8c4d6;
-    --background-button-hover: #f2f2f2;
+    --background-button: #2ec4b6;
+    --background-button-hover: #1b9aaa;
 
-    --color-base: black;
-    --color-primary: black;
-    --color-secondary: black;
+    --color-base: #1a2327;
+    --color-primary: #1b9aaa;
+    --color-secondary: #2ec4b6;
     --color-accent: none;
     --color-accent-alt: none;
 
