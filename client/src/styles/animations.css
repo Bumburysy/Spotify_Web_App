@@ -1,0 +1,112 @@
+@keyframes dual-glow-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: var(--shadow-medium);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-large);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+@keyframes bgPulse {
+  0% {
+    opacity: 0.1;
+    filter: blur(60px);
+  }
+  100% {
+    opacity: 0.25;
+    filter: blur(120px);
+  }
+}
+
+@keyframes neonFlicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  77%,
+  79%,
+  88%,
+  100% {
+    opacity: 1;
+    text-shadow: var(--shadow-large);
+  }
+  20%,
+  24%,
+  55%,
+  78%,
+  80%,
+  89% {
+    opacity: 0.7;
+    text-shadow: var(--shadow-small);
+  }
+  81%,
+  85% {
+    opacity: 0.5;
+    text-shadow: var(--shadow-tiny);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes particleMoveDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) scale(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
