@@ -8,7 +8,10 @@ export default function Topbar({ particlesOn, setParticlesOn }) {
 
   return (
     <div id="topbar">
-      <button id="menu-toggle" onClick={() => setIsSidebarOpen(prev => !prev)}>
+      <button
+        id="menu-toggle"
+        onClick={() => setIsSidebarOpen((prev) => !prev)}
+      >
         ☰
       </button>
 
@@ -18,7 +21,10 @@ export default function Topbar({ particlesOn, setParticlesOn }) {
 
       <img src="/src/assets/logo.png" alt="Logo SpotiTools" />
 
-      <TopbarButtons particlesOn={particlesOn} setParticlesOn={setParticlesOn} />
+      <TopbarButtons
+        particlesOn={particlesOn}
+        setParticlesOn={setParticlesOn}
+      />
     </div>
   );
 }
