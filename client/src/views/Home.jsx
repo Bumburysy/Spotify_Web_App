@@ -1,35 +1,27 @@
 import { useState } from "react";
+import styles from "../styles/Home.module.css";
 import Preloader from "./Preloader";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 import Topbar from "../components/Topbar/Topbar";
 import Particles from "../components/Hooks/Particles";
 import useSectionObserver from "../scripts/useSectionObserver";
 
 export default function Home() {
   const [particlesOn, setParticlesOn] = useState(true);
-  useSectionObserver();
+  useSectionObserver(`.${styles.sectionHome}`, 0.2, styles);
 
   return (
     <>
       <Preloader />
 
-      <header id="main-header">
-        <img src="./src/assets/logo.png" alt="SpotiTools logo" />
-        <h1>SpotiTools</h1>
-        <h2>Twoje Muzyczne Centrum Kontroli</h2>
-        <p>
-          Personalizuj. Analizuj. Zarządzaj. Wszystko w jednym miejscu dzięki
-          SpotiTools!
-        </p>
-        <a href="#dolacz" role="button">
-          Wypróbuj Teraz!
-        </a>
-      </header>
+      <Header />
 
-      <Topbar particlesOn={particlesOn} setParticlesOn={setParticlesOn} />
+      {/*<Topbar particlesOn={particlesOn} setParticlesOn={setParticlesOn} />*/}
 
-      <main>
-        <section id="intro" className="intro-section">
-          <div id="content">
+      <main className={styles.mainHome}>
+        <section id="intro" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-music"></i> Witaj w SpotiTools
             </h2>
@@ -41,7 +33,7 @@ export default function Home() {
             <h2>
               <i className="fa-solid fa-circle-info"></i> Poznaj SpotiTools
             </h2>
-            <nav className="intro-nav">
+            <nav className={styles.introNav}>
               <a href="#czym-jest" role="button">
                 Czym jest SpotiTools?
               </a>
@@ -85,8 +77,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="czym-jest">
-          <div id="content">
+        <section id="czym-jest" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-question-circle"></i> Czym jest
               SpotiTools?
@@ -124,8 +116,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="problematyka">
-          <div id="content">
+        <section id="problematyka" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-triangle-exclamation"></i> Problematyka
             </h2>
@@ -201,8 +193,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="nasze-rozwiazanie">
-          <div id="content">
+        <section id="nasze-rozwiazanie" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-lightbulb"></i> Nasze rozwiązanie
             </h2>
@@ -282,8 +274,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="technologie-i-integracje">
-          <div id="content">
+        <section id="technologie-i-integracje" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-microchip"></i> Technologie i integracje
             </h2>
@@ -354,8 +346,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="funkcjonalnosci">
-          <div id="content">
+        <section id="funkcjonalnosci" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-list-check"></i> Funkcjonalności
               aplikacji
@@ -475,8 +467,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="jak-dziala">
-          <div id="content">
+        <section id="jak-dziala" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-gears"></i> Jak działa?
             </h2>
@@ -583,8 +575,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="dlaczego-warto">
-          <div id="content">
+        <section id="dlaczego-warto" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-heart"></i> Dlaczego warto wybrać
               SpotiTools?
@@ -678,8 +670,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="dla-kogo">
-          <div id="content">
+        <section id="dla-kogo" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-users"></i> Dla kogo tworzymy
               SpotiTools?
@@ -760,8 +752,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="potencjalna-rozbudowa">
-          <div id="content">
+        <section id="potencjalna-rozbudowa" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-seedling"></i> Potencjalna rozbudowa
             </h2>
@@ -845,8 +837,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="status-projektu">
-          <div id="content">
+        <section id="status-projektu" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-circle-check"></i> Status projektu
             </h2>
@@ -924,8 +916,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="faq">
-          <div id="content">
+        <section id="faq" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-circle-question"></i> Najczęściej
               Zadawane Pytania (FAQ)
@@ -991,8 +983,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="kontakt">
-          <div id="content">
+        <section id="kontakt" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-envelope"></i> Kontakt / Feedback /
               Wsparcie
@@ -1058,8 +1050,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="dolacz">
-          <div id="content">
+        <section id="dolacz" className={styles.sectionHome}>
+          <div className={styles.content}>
             <h2>
               <i className="fa-solid fa-user-plus"></i> Dołącz już teraz!
             </h2>
@@ -1082,83 +1074,15 @@ export default function Home() {
         </section>
       </main>
 
-      <footer>
-        <h3>O projekcie</h3>
-        <p>
-          SpotiTools to nieoficjalna aplikacja demonstracyjna rozwijana w celach
-          edukacyjno-prezentacyjnych. Integracja z platformą Spotify poprzez
-          Spotify API.
-        </p>
-        <h3>Dokumentacja</h3>
-        <nav>
-          <a href="https://example.com/" role="button">
-            Repozytorium GitHub
-          </a>
-          <a href="https://example.com/" role="button">
-            Dokumentacja techniczna
-          </a>
-          <a href="https://example.com/" role="button">
-            Licencja projektu
-          </a>
-          <a href="https://example.com/" role="button">
-            Status wersji
-          </a>
-        </nav>
-        <h3>Kontakt</h3>
-        <nav>
-          <a href="https://example.com/" role="button">
-            Formularz feedbacku
-          </a>
-          <a href="mailto:kontakt@spotitools.app" role="button">
-            kontakt@spotitools.app
-          </a>
-        </nav>
-        <h3>Udostępnij projekt</h3>
-        <div className="social-buttons">
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://spotitools.app"
-            target="_blank"
-            title="Udostępnij na Facebooku"
-          >
-            <i className="fab fa-facebook-square"></i>
-          </a>
-          <a
-            href="https://twitter.com/intent/tweet?text=Sprawdź%20SpotiTools!%20https://spotitools.app"
-            target="_blank"
-            title="Udostępnij na X/Twitter"
-          >
-            <i className="fab fa-x-twitter"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/shareArticle?mini=true&url=https://spotitools.app&title=SpotiTools"
-            target="_blank"
-            title="Udostępnij na LinkedIn"
-          >
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a
-            href="https://t.me/share/url?url=https://spotitools.app&text=SpotiTools%20-%20Twoje%20muzyczne%20centrum%20kontroli"
-            target="_blank"
-            title="Udostępnij na Telegramie"
-          >
-            <i className="fab fa-telegram"></i>
-          </a>
-          <a
-            href="mailto:?subject=SpotiTools&body=Zobacz%20to!%20https://spotitools.app"
-            title="Udostępnij e-mailem"
-          >
-            <i className="fas fa-envelope"></i>
-          </a>
-        </div>
-        <p>
-          &copy; 2025 SpotiTools. Projekt demonstracyjny. Nieoficjalna
-          aplikacja.
-          <br />
-          Spotify jest zarejestrowanym znakiem towarowym Spotify AB.
-        </p>
-      </footer>
+      <Footer />
 
       <Particles isActive={particlesOn} />
     </>
   );
 }
+
+/*
+Sprawdzić zawartość sekcji
+Zoptymalizować kod CSS
+Naprawić linki
+*/
