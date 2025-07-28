@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import styles from "../../styles/particlesEffect.module.css";
 
 const particleColors = [
   "var(--color-base)",
@@ -22,15 +23,19 @@ export default function Particles({ isActive }) {
     function createParticle() {
       const p = document.createElement("div");
       const size = Math.random() * 6 + 3;
-      p.className = "particle";
+      p.className = styles.particle;
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
       p.style.left = `${Math.random() * 100}vw`;
       p.style.top = "-20px";
       p.style.background =
         particleColors[Math.floor(Math.random() * particleColors.length)];
-      p.style.boxShadow = `0 0 ${size * 4}px ${size * 1.5}px ${p.style.background}, 0 0 2px 1px #fff8`;
-      p.style.animation = `particleMoveDown ${4 + Math.random() * 4}s linear forwards`;
+      p.style.boxShadow = `0 0 ${size * 4}px ${size * 1.5}px ${
+        p.style.background
+      }, 0 0 2px 1px #fff8`;
+      p.style.animation = `particleMoveDown ${
+        4 + Math.random() * 4
+      }s linear forwards`;
       p.style.opacity = 0.7 + Math.random() * 0.3;
       containerRef.current.appendChild(p);
       setTimeout(() => p.remove(), 9000);
@@ -41,5 +46,5 @@ export default function Particles({ isActive }) {
     return () => clearInterval(intervalRef.current);
   }, [isActive]);
 
-  return <div id="particles" ref={containerRef}></div>;
+  return <div className={styles.particlesContainer} ref={containerRef}></div>;
 }
