@@ -1,13 +1,20 @@
 import { useEffect } from "react";
 
-export default function useSectionObserver(selector = "section", threshold = 0.2) {
+export default function useSectionObserver(
+  selector = "section",
+  threshold = 0.2,
+  styles
+) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries, obs) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
+            const el = entry.target;
+            const isEven = [...el.parentNode.children].indexOf(el) % 2 === 1;
+
+            el.classList.add(isEven ? styles.visibleEven : styles.visibleOdd);
+            obs.unobserve(el);
           }
         });
       },
@@ -18,5 +25,5 @@ export default function useSectionObserver(selector = "section", threshold = 0.2
     targets.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [selector, threshold]);
+  }, [selector, threshold, styles]);
 }
