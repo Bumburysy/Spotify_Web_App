@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import logo from "/src/assets/logo.png";
+import logo from "../assets/logo.png";
+import styles from "../styles/Preloader.module.css";
 
 export default function Preloader() {
   const preloaderRef = useRef(null);
@@ -7,7 +8,7 @@ export default function Preloader() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (preloaderRef.current) {
-        preloaderRef.current.classList.add("hidden");
+        preloaderRef.current.classList.add(styles.hidden);
       }
     }, 1000);
 
@@ -15,10 +16,10 @@ export default function Preloader() {
   }, []);
 
   return (
-    <div id="preloader" ref={preloaderRef}>
-      <div className="loader">
-        <img src={logo} alt="SpotiTools Logo" />
-        <h1>SpotiTools</h1>
+    <div className={styles.preloader} ref={preloaderRef}>
+      <div className={styles.loader}>
+        <img className={styles.logo} src={logo} alt="SpotiTools Logo" />
+        <h1 className={styles.title}>SpotiTools</h1>
       </div>
     </div>
   );
