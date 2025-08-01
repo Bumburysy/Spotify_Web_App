@@ -17,7 +17,7 @@ export default function Home() {
 
       <Header />
 
-      {/*<Topbar particlesOn={particlesOn} setParticlesOn={setParticlesOn} />*/}
+      <Topbar particlesOn={particlesOn} setParticlesOn={setParticlesOn} />
 
       <main className={styles.mainHome}>
         <section id="intro" className={styles.sectionHome}>
@@ -1067,7 +1067,7 @@ export default function Home() {
               przekonaj się, co SpotiTools może zrobić dla Twojego konta
               Spotify.
             </p>
-            <a href="./login" role="button">
+            <a href="./dashboard" role="button">
               Uruchom Demo
             </a>
           </div>
@@ -1082,7 +1082,8 @@ export default function Home() {
 }
 
 /*
-Sprawdzić zawartość sekcji
-Zoptymalizować kod CSS
-Naprawić linki
+ToDo:
+-Sprawdzić zawartość sekcji
+-Zoptymalizować kod CSS
+-Naprawić linki
 */
