@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Preloader from "./Preloader";
+import Footer from "./Footer.jsx";
+import NavBar from "../components/MainNavBar.jsx";
+import styles from "../styles/dashboard.module.css";
 
 export default function Dashboard() {
   useEffect(() => {
@@ -7,43 +11,39 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="dashboard">
-      <h1>Panelu użytkownika.</h1>
-      <p>Wybierz moduł, który chcesz uruchomić:</p>
+    <div className={styles.dashboard}>
+      <Preloader />
 
-      <div className="modules-grid">
-        <Link to="/modules/analytics" className="module-card">
-          <h2>Analityka muzyczna</h2>
-          <p>Statystyki i wizualizacje Twoich danych muzycznych z Spotify.</p>
-        </Link>
+      <NavBar />
 
-        <Link to="/modules/recommendations" className="module-card">
-          <h2>Rekomendacje</h2>
-          <p>
-            Nowe utwory i artyści dobrani do Twojego gustu — wybierz model
-            rekomendacji.
-          </p>
-        </Link>
-
-        <Link to="/modules/search" className="module-card">
-          <h2>Wyszukiwarka</h2>
-          <p>Szukaj muzyki wg gatunku, artysty, roku, popularności i więcej.</p>
-        </Link>
-
-        <Link to="/modules/playlistgenerator" className="module-card">
-          <h2>Generator playlist</h2>
-          <p>Generuj playlisty wg nastroju, tempa, gatunku lub losowo.</p>
-        </Link>
-
-        <Link to="/modules/playlistmanager" className="module-card">
-          <h2>Zarządzanie playlistami</h2>
-          <p>Sortowanie, dzielenie, usuwanie duplikatów, reorganizacja list.</p>
-        </Link>
-
-        <Link to="/logout">
-          <h2>Wyloguj</h2>
-        </Link>
+      <div className={styles.content}>
+        {/*Miejsce do wsadzania zawartości modułów. Bazowo info o niezalogowanym
+        użytkowniku i odnoścink do logowania. Zalogowany użytkownik ma dostęp do
+        modułów linki do nich. Widok moduły trafi w to miejsce.*/}
+        <div className={styles.welcome}>
+          <h1>Witaj użytkowniku!</h1>
+          <h2>Obecnie jesteś niezalogowany.</h2>
+          <h2>Zaloguj się na swoje konto Spotify aby korzystać z aplikacji.</h2>
+          <a href="/login" role="button">
+            Zaloguj się
+          </a>
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
+
+/*
+ToDo:
+Poprawić CSSa
+Układ panelu głównego:
+-odnośiniki do modułów, ikony, opisy
+-nawigacja topbara
+-link do logowania
+-wersja zalogowana i wylogowana (niezalogowany przekierowanie do logowania)
+-nazwa zalogowanego użytkownika, jego zdjęcie profilowe itp
+-zmiana motywu, logo itp
+-footer z linkami do dokumentacji, repozytorium, kontaktu itp
+*/
