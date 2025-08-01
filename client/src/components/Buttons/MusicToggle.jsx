@@ -1,3 +1,5 @@
+import styles from "/src/styles/button.module.css";
+
 export default function MusicToggle({ audioRef, isPlaying, setIsPlaying }) {
   const toggleMusic = async () => {
     const audio = audioRef.current;
@@ -22,6 +24,7 @@ export default function MusicToggle({ audioRef, isPlaying, setIsPlaying }) {
       title="Włącz/wyłącz muzykę"
       onClick={toggleMusic}
       aria-pressed={isPlaying}
+      className={styles.button}
     >
       <i
         className={`fa-solid ${

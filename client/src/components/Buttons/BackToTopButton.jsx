@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import styles from "/src/styles/button.module.css";
 
 export default function BackToTopButton() {
   useEffect(() => {
@@ -17,7 +18,9 @@ export default function BackToTopButton() {
   }, []);
 
   const handleClick = () => {
-    document.getElementById("main-header")?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById("main-header")
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -26,6 +29,7 @@ export default function BackToTopButton() {
       title="Do góry"
       aria-label="Do góry"
       onClick={handleClick}
+      className={styles.button}
     >
       <i className="fa-solid fa-arrow-up"></i>
     </button>

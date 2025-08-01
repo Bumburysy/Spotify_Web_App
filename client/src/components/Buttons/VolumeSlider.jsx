@@ -1,3 +1,5 @@
+import styles from "/src/styles/button.module.css";
+
 export default function VolumeSlider({ audioRef }) {
   const handleVolumeChange = (e) => {
     const volume = e.target.value;
@@ -16,6 +18,7 @@ export default function VolumeSlider({ audioRef }) {
       defaultValue="1"
       onInput={handleVolumeChange}
       title="Głośność"
+      className={styles.slider}
     />
   );
 }

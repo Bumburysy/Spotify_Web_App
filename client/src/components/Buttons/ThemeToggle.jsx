@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "/src/styles/button.module.css";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState("dark");
@@ -21,6 +22,7 @@ export default function ThemeToggle() {
       id="toggle-theme"
       title="Zmień motyw"
       onClick={toggleTheme}
+      className={styles.button}
     >
       <i className={`fa-solid ${theme === "dark" ? "fa-moon" : "fa-sun"}`}></i>
     </button>

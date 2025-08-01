@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import classNames from "classnames";
+import styles from "/src/styles/sideBar.module.css";
 
 const sectionIds = [
   "intro",
@@ -14,7 +16,7 @@ const sectionIds = [
   "status-projektu",
   "faq",
   "kontakt",
-  "dolacz"
+  "dolacz",
 ];
 
 export default function Sidebar({ isOpen }) {
@@ -28,7 +30,8 @@ export default function Sidebar({ isOpen }) {
       for (const id of sectionIds) {
         const section = document.getElementById(id);
         if (section) {
-          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const sectionTop =
+            section.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= sectionTop) {
             currentId = id;
           }
@@ -47,14 +50,18 @@ export default function Sidebar({ isOpen }) {
   }, []);
 
   return (
-    <aside id="sidebar" className={isOpen ? "active" : ""}>
+    <aside
+      id="sidebar"
+      className={classNames(styles.sidebar, { [styles.active]: isOpen })}
+    >
       <nav>
         {sectionIds.map((id) => (
           <a
             key={id}
             href={`#${id}`}
-            role="button"
-            className={activeSection === id ? "active" : ""}
+            className={classNames(styles.link, {
+              [styles.activeLink]: activeSection === id,
+            })}
           >
             {formatLinkText(id)}
           </a>
@@ -66,20 +73,20 @@ export default function Sidebar({ isOpen }) {
 
 function formatLinkText(id) {
   const map = {
-    "intro": "Intro",
+    intro: "Intro",
     "czym-jest": "Czym jest SpotiTools?",
-    "problematyka": "Problematyka",
+    problematyka: "Problematyka",
     "nasze-rozwiazanie": "Nasze rozwiązanie",
     "technologie-i-integracje": "Technologie",
-    "funkcjonalnosci": "Funkcje",
+    funkcjonalnosci: "Funkcje",
     "jak-dziala": "Jak działa?",
     "dlaczego-warto": "Dlaczego my?",
     "dla-kogo": "Dla kogo?",
     "potencjalna-rozbudowa": "Rozbudowa",
     "status-projektu": "Status",
-    "faq": "FAQ",
-    "kontakt": "Kontakt",
-    "dolacz": "Dołącz teraz!"
+    faq: "FAQ",
+    kontakt: "Kontakt",
+    dolacz: "Dołącz teraz!",
   };
   return map[id] || id;
 }

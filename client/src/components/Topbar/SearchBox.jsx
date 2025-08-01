@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import styles from "/src/styles/search.module.css";
 
 export default function SearchBox() {
   const inputRef = useRef(null);
@@ -16,7 +17,7 @@ export default function SearchBox() {
 
     if (query !== lastQuery) {
       const allSections = [...document.querySelectorAll("section")];
-      const matched = allSections.filter(section =>
+      const matched = allSections.filter((section) =>
         section.textContent.toLowerCase().includes(query)
       );
 
@@ -33,7 +34,6 @@ export default function SearchBox() {
       setLastQuery(query);
       matched[0].scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (matches.length > 1) {
-
       const nextIndex = (currentIndex + 1) % matches.length;
       setCurrentIndex(nextIndex);
       matches[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
@@ -59,15 +59,15 @@ export default function SearchBox() {
   }, []);
 
   return (
-    <div className="topbar-search">
+    <div className={styles.search}>
       <input
         type="text"
         id="search-input"
         ref={inputRef}
         placeholder="Szukaj..."
-        onKeyDown={handleKeyDown}
+        className={styles.input}
       />
-      <button id="search-button" title="Szukaj" onClick={performSearch}>
+      <button className={styles.button} title="Szukaj" onClick={performSearch}>
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>

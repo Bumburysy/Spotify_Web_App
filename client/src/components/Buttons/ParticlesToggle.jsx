@@ -1,3 +1,5 @@
+import styles from "/src/styles/button.module.css";
+
 export default function ParticlesToggle({ particlesOn, setParticlesOn }) {
   const particlesToggle = () => {
     setParticlesOn((prev) => !prev);
@@ -9,6 +11,7 @@ export default function ParticlesToggle({ particlesOn, setParticlesOn }) {
       title="Włącz/wyłącz iskierki"
       onClick={particlesToggle}
       aria-pressed={particlesOn}
+      className={styles.button}
     >
       <i
         className={`fa-solid ${
@@ -18,4 +21,3 @@ export default function ParticlesToggle({ particlesOn, setParticlesOn }) {
     </button>
   );
 }
-
