@@ -1,33 +1,78 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Preloader from "./Preloader";
 import Footer from "./Footer.jsx";
 import NavBar from "../components/MainNavBar.jsx";
 import styles from "../styles/dashboard.module.css";
+import Login from "../components/LoginWithSpotify.jsx";
 
 export default function Dashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     document.title = "Panel użytkownika — SpotiTools";
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      setIsAuthenticated(true);
+
+      // Pobieramy dane użytkownika z API Spotify
+      fetch("https://api.spotify.com/v1/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Błąd pobierania danych użytkownika");
+          return res.json();
+        })
+        .then((data) => setUser(data))
+        .catch(() => {
+          setIsAuthenticated(false);
+          setUser(null);
+        });
+    }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsAuthenticated(false);
+    setUser(null);
+  };
 
   return (
     <div className={styles.dashboard}>
       <Preloader />
 
-      <NavBar />
+      <NavBar
+        isAuthenticated={isAuthenticated}
+        user={user}
+        handleLogout={handleLogout}
+      />
 
       <div className={styles.content}>
-        {/*Miejsce do wsadzania zawartości modułów. Bazowo info o niezalogowanym
-        użytkowniku i odnoścink do logowania. Zalogowany użytkownik ma dostęp do
-        modułów linki do nich. Widok moduły trafi w to miejsce.*/}
-        <div className={styles.welcome}>
-          <h1>Witaj użytkowniku!</h1>
-          <h2>Obecnie jesteś niezalogowany.</h2>
-          <h2>Zaloguj się na swoje konto Spotify aby korzystać z aplikacji.</h2>
-          <a href="/login" role="button">
-            Zaloguj się
-          </a>
-        </div>
+        {isAuthenticated ? (
+          <div className={styles.modules}>
+            <h1>Witaj z powrotem{user ? `, ${user.display_name}` : ""}!</h1>
+            <p>Wybierz moduł, z którego chcesz skorzystać.</p>
+            <ul>
+              <li>
+                <Link to="/modul1">Moduł 1</Link>
+              </li>
+              <li>
+                <Link to="/modul2">Moduł 2</Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className={styles.welcome}>
+            <h1>Witaj użytkowniku!</h1>
+            <h2>Obecnie jesteś niezalogowany.</h2>
+            <h2>
+              Zaloguj się na swoje konto Spotify aby korzystać z aplikacji.
+            </h2>
+            <Login />
+          </div>
+        )}
       </div>
 
       <Footer />
