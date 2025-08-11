@@ -1,8 +1,8 @@
 import styles from "../styles/mainNavBar.module.css";
 import ThemeToggle from "./Buttons/ThemeToggle";
-import BackToTopButton from "./Buttons/BackToTopButton";
+import Login from "../components/LoginWithSpotify.jsx";
 
-export default function MainNavBar() {
+export default function MainNavBar({ isAuthenticated, user, handleLogout }) {
   return (
     <header className={styles.container}>
       <div className={styles.logoSection}>
@@ -38,29 +38,31 @@ export default function MainNavBar() {
 
       <nav className={styles.nav}>
         <ThemeToggle />
-        <BackToTopButton />
-        <a href="Info" role="button">
-          Zaloguj
-        </a>
-        <a href="Info" role="button">
-          Zarejestruj
-        </a>
+        {isAuthenticated ? (
+          <div className={styles.userInfo}>
+            {user?.images?.[0]?.url && (
+              <img
+                src={user.images[0].url}
+                alt="avatar"
+                className={styles.avatar}
+              />
+            )}
+            <h2 className={styles.logoText}>
+              {user?.display_name || "Nieznany użytkownik"}
+            </h2>
+            <a onClick={handleLogout} role="button">
+              Wyloguj
+            </a>
+          </div>
+        ) : (
+          <>
+            <Login />
+            <a href="https://www.spotify.com/signup" role="button">
+              Zarejestruj
+            </a>
+          </>
+        )}
       </nav>
     </header>
   );
 }
-
-/*
-ToDo:
-    Główny panel nawigacyjny widoczny na wszystkich widokach
-    - logo, nazwa aplikacji po lewej,
-    - odnośnik do strony informacyjnej,
-    - powrót do strony głównej (obecna strona),
-    - rozwijana lista modułów,
-    - przycisk zaloguj/wyloguj i zarejestruj, 
-    - info o obecnie zalogowanym użytkowniku (lub napis niezalogowany),
-    - przyciski zmiany motywu,
-    - przycisk powrotu na górę
-
-    Logika przycisków, linki, przekierowania, informacje o zalogowanym użytkowniku do implementacji.
-*/
