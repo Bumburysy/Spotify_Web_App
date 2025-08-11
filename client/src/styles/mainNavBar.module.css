@@ -94,6 +94,20 @@
   background-color: var(--background-button-hover);
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  background-color: var(--background-button);
+  height: 56px;
+  border-radius: 50%;
+
+  justify-self: center;
+}
+
 @keyframes dual-glow-pulse {
   0% {
     transform: scale(1);
