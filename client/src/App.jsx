@@ -9,6 +9,9 @@ import Generator from "./views/Modules/PlaylistGenerator.jsx";
 import Manager from "./views/Modules/PlaylistManager.jsx";
 import Rec from "./views/Modules/Recommendations.jsx";
 import Search from "./views/Modules/Search.jsx";
+import Callback from "./views/Callback.jsx";
+import LoginWithSpotify from "./components/LoginWithSpotify.jsx";
+import LoginError from "./views/LoginError.jsx";
 
 export default function App() {
   return (
@@ -16,9 +19,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginWithSpotify />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login/callback" element={<Callback />} />
+        <Route path="/login/error" element={<LoginError />} />
         <Route path="/modules/analytics" element={<Analytics />} />
         <Route path="/modules/playlistgenerator" element={<Generator />} />
         <Route path="/modules/playlistmanager" element={<Manager />} />
