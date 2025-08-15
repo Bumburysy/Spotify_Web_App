@@ -1,94 +1,113 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Preloader from "./Preloader";
 import Footer from "./Footer.jsx";
 import NavBar from "../components/MainNavBar.jsx";
 import styles from "../styles/dashboard.module.css";
 import Login from "../components/LoginWithSpotify.jsx";
+import Analytics from "../views/modules/Analytics.jsx";
+import PlaylistGen from "../views/modules/PlaylistGenerator.jsx";
+import PlaylistMan from "../views/modules/PlaylistManager.jsx";
+import Rec from "../views/modules/Recommendations.jsx";
+import Search from "../views/modules/Search.jsx";
+import ModuleSelector from "./ModuleSelector.jsx";
 
 export default function Dashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [activeModule, setActiveModule] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Panel użytkownika — SpotiTools";
-    const token = localStorage.getItem("accessToken");
+    const fetchUserData = async () => {
+      const sessionID = localStorage.getItem("sessionID");
+      if (!sessionID) {
+        setLoading(false);
+        return;
+      }
 
-    if (token) {
-      setIsAuthenticated(true);
-
-      // Pobieramy dane użytkownika z API Spotify
-      fetch("https://api.spotify.com/v1/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error("Błąd pobierania danych użytkownika");
-          return res.json();
-        })
-        .then((data) => setUser(data))
-        .catch(() => {
-          setIsAuthenticated(false);
-          setUser(null);
+      try {
+        const sessionRes = await fetch("http://localhost:3001/api/session/me", {
+          headers: { "X-Session-ID": sessionID },
         });
-    }
+        if (!sessionRes.ok) throw new Error("Not logged in");
+        setIsAuthenticated(true);
+
+        const userRes = await fetch(`http://localhost:3001/api/user/details`, {
+          headers: { "X-Session-ID": sessionID },
+        });
+
+        if (!userRes.ok) throw new Error("Failed to fetch user data");
+
+        const userData = await userRes.json();
+        setUser(userData);
+      } catch (err) {
+        console.error(err);
+        localStorage.removeItem("sessionID");
+        setIsAuthenticated(false);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    setIsAuthenticated(false);
-    setUser(null);
+  const handleLogout = async () => {
+    const sessionID = localStorage.getItem("sessionID");
+    if (!sessionID) return;
+
+    try {
+      await fetch("http://localhost:3001/api/session/logout", {
+        method: "POST",
+        headers: { "X-Session-ID": sessionID },
+      });
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      localStorage.removeItem("sessionID");
+      setIsAuthenticated(false);
+      setUser(null);
+    }
   };
+
+  const modules = {
+    module1: <Analytics sessionID={localStorage.getItem("sessionID")} />,
+    module2: <PlaylistGen sessionID={localStorage.getItem("sessionID")} />,
+    module3: <PlaylistMan sessionID={localStorage.getItem("sessionID")} />,
+    module4: <Rec sessionID={localStorage.getItem("sessionID")} />,
+    module5: <Search sessionID={localStorage.getItem("sessionID")} />,
+  };
+
+  if (loading) return <Preloader />;
 
   return (
     <div className={styles.dashboard}>
-      <Preloader />
-
       <NavBar
         isAuthenticated={isAuthenticated}
         user={user}
         handleLogout={handleLogout}
       />
-
       <div className={styles.content}>
-        {isAuthenticated ? (
-          <div className={styles.modules}>
-            <h1>Witaj z powrotem{user ? `, ${user.display_name}` : ""}!</h1>
-            <p>Wybierz moduł, z którego chcesz skorzystać.</p>
-            <ul>
-              <li>
-                <Link to="/modul1">Moduł 1</Link>
-              </li>
-              <li>
-                <Link to="/modul2">Moduł 2</Link>
-              </li>
-            </ul>
-          </div>
+        {isAuthenticated && user ? (
+          <ModuleSelector
+            user={user}
+            activeModule={activeModule}
+            setActiveModule={setActiveModule}
+            modules={modules}
+          />
         ) : (
           <div className={styles.welcome}>
             <h1>Witaj użytkowniku!</h1>
             <h2>Obecnie jesteś niezalogowany.</h2>
             <h2>
-              Zaloguj się na swoje konto Spotify aby korzystać z aplikacji.
+              Zaloguj się na swoje konto Spotify, aby korzystać z aplikacji.
             </h2>
             <Login />
           </div>
         )}
       </div>
-
       <Footer />
     </div>
   );
 }
-
-/*
-ToDo:
-Poprawić CSSa
-Układ panelu głównego:
--odnośiniki do modułów, ikony, opisy
--nawigacja topbara
--link do logowania
--wersja zalogowana i wylogowana (niezalogowany przekierowanie do logowania)
--nazwa zalogowanego użytkownika, jego zdjęcie profilowe itp
--zmiana motywu, logo itp
--footer z linkami do dokumentacji, repozytorium, kontaktu itp
-*/
