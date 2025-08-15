@@ -32,20 +32,20 @@
   --background-base: #d6f6ff;
   --background-main: linear-gradient(
     120deg,
-    #b0e6d2 0%,
-    #a0d8ef 50%,
-    #e6f6ff 100%
+    #ffffff 0%,
+    #ffffff 50%,
+    #ffffff 100%
   );
-  --background-hf: radial-gradient(circle at 60% 40%, #b0e6d2 0%, #a0d8ef 100%);
-  --background-sectiona: linear-gradient(135deg, #e6f6ff 0%, #b0e6d2 100%);
-  --background-sectionb: linear-gradient(-135deg, #e6f6ff 0%, #a0d8ef 100%);
+  --background-hf: radial-gradient(circle at 60% 40%, #ffffff 0%, #ffffff 100%);
+  --background-sectiona: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  --background-sectionb: linear-gradient(-135deg, #ffffff 0%, #ffffff 100%);
 
-  --background-button: #2ec4b6;
-  --background-button-hover: #1b9aaa;
+  --background-button: #ffffff;
+  --background-button-hover: #ffffff;
 
-  --color-base: #1a2327;
-  --color-primary: #1a2327;
-  --color-secondary: #1a2327;
+  --color-base: #000000;
+  --color-primary: #000000;
+  --color-secondary: #000000;
   --color-accent: none;
   --color-accent-alt: none;
 
@@ -223,7 +223,7 @@ footer {
   z-index: 1;
 }
 
-a[role="button"] {
+[role="button"] {
   display: inline-block;
   padding: 16px 32px;
   background-color: var(--background-button);
@@ -236,7 +236,7 @@ a[role="button"] {
   box-shadow: var(--shadow-small-inset);
 }
 
-a[role="button"]:hover {
+[role="button"]:hover {
   transform: scale(1.05);
   box-shadow: var(--shadow-medium-inset);
   background-color: var(--background-button-hover);
