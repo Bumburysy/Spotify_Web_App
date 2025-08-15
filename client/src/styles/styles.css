@@ -149,10 +149,3 @@ body::after {
   background-color: var(--background-button-hover);
   color: var(--color-primary);
 }
-
-/*
-Podzielić CSS na globalny styles.css i modułowy *.module.css
-Oddzielić style na motywy
-Stworzyć CSSa dla widoków
-Poprawić jasny motyw
-*/

@@ -1080,10 +1080,3 @@ export default function Home() {
     </>
   );
 }
-
-/*
-ToDo:
--Sprawdzić zawartość sekcji
--Zoptymalizować kod CSS
--Naprawić linki
-*/

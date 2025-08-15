@@ -20,9 +20,3 @@ export default function Login() {
     </div>
   );
 }
-
-/*
-ToDo:
--Poprawić CSSa
--Zaimplementować logikę logowania
-*/
