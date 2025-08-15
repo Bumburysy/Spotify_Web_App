@@ -11,7 +11,7 @@ export default function MusicToggle({ audioRef, isPlaying, setIsPlaying }) {
       try {
         await audio.play();
       } catch (err) {
-        console.warn("Autoodtwarzanie zablokowane:", err);
+        console.warn("Autoplay disabled:", err);
       }
     }
 
