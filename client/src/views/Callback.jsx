@@ -25,29 +25,22 @@ export default function SpotifyCallback() {
 
     fetch("http://localhost:3001/api/auth/spotify", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.access_token) {
-          localStorage.setItem("accessToken", data.access_token);
-          localStorage.setItem("refreshToken", data.refresh_token);
-          localStorage.setItem(
-            "tokenExpiry",
-            Date.now() + data.expires_in * 1000
-          );
+        if (data.sessionID) {
+          localStorage.setItem("sessionID", data.sessionID);
           navigate("/dashboard");
         } else {
-          console.error("Brak tokenu w odpowiedzi:", data);
-          navigate("/login");
+          console.error("Missing sessionID", data);
+          navigate("/login/error");
         }
       })
       .catch((err) => {
-        console.error("Błąd podczas logowania:", err);
-        navigate("/login");
+        console.error("Login error:", err);
+        navigate("/login/error");
       });
   }, [params, navigate]);
 
