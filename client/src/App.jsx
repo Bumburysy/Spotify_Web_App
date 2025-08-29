@@ -1,34 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./views/Home.jsx";
-import Login from "./views/Login.jsx";
-import NotFound from "./views/NotFound";
-import Dashboard from "./views/Dashboard.jsx";
-import Logout from "./views/Logout.jsx";
-import Analytics from "./views/modules/Analytics.jsx";
-import Generator from "./views/modules/PlaylistGenerator.jsx";
-import Manager from "./views/modules/PlaylistManager.jsx";
-import Rec from "./views/modules/Recommendations.jsx";
-import Search from "./views/modules/Search.jsx";
-import Callback from "./views/Callback.jsx";
-import LoginWithSpotify from "./components/LoginWithSpotify.jsx";
-import LoginError from "./views/LoginError.jsx";
+import NotFound from "@/views/notFound.jsx";
+import Home from "@/views/home.jsx";
+import Dashboard from "@/views/dashboard.jsx";
+import Logout from "@/views/logout.jsx";
+import LoginError from "@/views/loginError.jsx";
+import Login from "@/components/hooks/loginWithSpotify.jsx";
+import Callback from "@/components/hooks/callback.jsx";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/login" element={<LoginWithSpotify />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/login/callback" element={<Callback />} />
         <Route path="/login/error" element={<LoginError />} />
-        <Route path="/modules/analytics" element={<Analytics />} />
-        <Route path="/modules/playlistgenerator" element={<Generator />} />
-        <Route path="/modules/playlistmanager" element={<Manager />} />
-        <Route path="/modules/recommendations" element={<Rec />} />
-        <Route path="/modules/search" element={<Search />} />
       </Routes>
     </BrowserRouter>
   );
