@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import styles from "../../styles/particlesEffect.module.css";
+import styles from "./particles.module.css";
 
 const particleColors = [
   "var(--color-base)",

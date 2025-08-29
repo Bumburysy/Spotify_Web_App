@@ -1,0 +1,39 @@
+.logo {
+  background-color: var(--background-button);
+  height: 256px;
+  width: 256px;
+  border-radius: 50%;
+  border: var(--border-small);
+  animation: dual-glow-pulse 8s ease-in-out infinite;
+  transition: transform 0.4s ease;
+  margin-bottom: 32px;
+}
+
+.title {
+  margin-bottom: 32px;
+}
+
+.subtitle {
+  margin-bottom: 16px;
+  text-shadow: var(--shadow-small);
+}
+
+.description {
+  width: 90%;
+  margin-bottom: 16px;
+}
+
+@keyframes dual-glow-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: var(--shadow-medium);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-large);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-medium);
+  }
+}

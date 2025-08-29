@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import Preloader from "./Preloader";
-import Footer from "./Footer.jsx";
-import NavBar from "../components/MainNavBar.jsx";
-import styles from "../styles/dashboard.module.css";
-import Login from "../components/LoginWithSpotify.jsx";
-import Analytics from "../views/modules/Analytics.jsx";
-import PlaylistGen from "../views/modules/PlaylistGenerator.jsx";
-import PlaylistMan from "../views/modules/PlaylistManager.jsx";
-import Rec from "../views/modules/Recommendations.jsx";
-import Search from "../views/modules/Search.jsx";
-import ModuleSelector from "./ModuleSelector.jsx";
+import Preloader from "@/components/layout/preloader.jsx";
+import Footer from "@/components/layout/footer.jsx";
+import NavBar from "@/components/layout/navBar.jsx";
+import ModuleSelector from "@/components/layout/moduleSelector.jsx";
+import Login from "@/components/hooks/loginWithSpotify.jsx";
+import Analytics from "./modules/analytics.jsx";
+import PlaylistGen from "./modules/playlistGen.jsx";
+import PlaylistMan from "./modules/playlistMan.jsx";
+import Rec from "./modules/recs.jsx";
+import Search from "./modules/search.jsx";
+import styles from "./dashboard.module.css";
 
 export default function Dashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

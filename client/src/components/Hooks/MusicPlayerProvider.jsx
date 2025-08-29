@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import MusicToggle from "../Buttons/MusicToggle";
-import VolumeSlider from "../Buttons/VolumeSlider";
+import MusicToggle from "../ui/buttons/musicToggle.jsx";
+import VolumeSlider from "../ui/buttons/volumeSlider.jsx";
+import Music from "@/assets/homePageMusic.mp3";
 
 export default function MusicPlayer() {
   const audioRef = useRef(null);
@@ -8,12 +9,7 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <audio
-        id="bg-music"
-        ref={audioRef}
-        loop
-        src="./public/GTA Vice City - Introduction Theme [REMASTERED & EXTENDED].mp3"
-      />
+      <audio id="bg-music" ref={audioRef} loop src={Music} />
 
       <MusicToggle
         audioRef={audioRef}

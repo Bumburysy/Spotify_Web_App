@@ -1,11 +1,11 @@
 import { useState } from "react";
-import styles from "../styles/Home.module.css";
-import Preloader from "./Preloader";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
-import Topbar from "../components/Topbar/Topbar";
-import Particles from "../components/Hooks/Particles";
-import useSectionObserver from "../scripts/useSectionObserver";
+import styles from "./home.module.css";
+import Preloader from "@/components/layout/preloader.jsx";
+import Header from "@/components/layout/header.jsx";
+import Footer from "@/components/layout/footer.jsx";
+import Topbar from "@/components/ui/topBar/topBar.jsx";
+import Particles from "@/components/hooks/particles.jsx";
+import useSectionObserver from "@/scripts/useSectionObserver.js";
 
 export default function Home() {
   const [particlesOn, setParticlesOn] = useState(true);
